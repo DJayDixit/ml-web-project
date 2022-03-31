@@ -12,3 +12,5 @@ Using Django to handle back-end routing. Bootstrap for giving styling to html pa
 XGBoost and Linear_reg algorithm to create the model.
 
 Optuna for hyperparameter optimization. Used SuccesiveHalving to prune the optimization for a quicker optimization.
+
+Althought the dataset on which the model was trained on has not been included in the repo for various reasons including copyright issues. 
