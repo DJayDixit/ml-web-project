@@ -30,9 +30,11 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# 'ml_project.calculate_output.calculate',
 INSTALLED_APPS = [
-    'ml_project.calculate_output.calculate',
+    'ml_project.apps.MlProjectConfig',
     'web_project.apps.WebProjectConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -9,3 +9,5 @@ ml_web_project/ml_project/archive/MAS Core Inflation.csv
 ml_web_project/ml_project/core_cpi_predict.pickle
 ml_web_project/ml_project/price_predict.pickle
 ml_web_project/ml_project/year_gni_predict.pickle
+*.csv
+*.xlsx
