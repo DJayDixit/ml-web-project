@@ -1,6 +1,24 @@
 {% extends "web_project/base.html" %}
 {% load crispy_forms_tags %}
+{% block last_search %}
+
+    <div class="col-md-4">
+        <div class="content-section">
+                <h3>Your previous looks into the future</h3>
+                <p class='text-muted'>Your recent search results will appear here.
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Price 1</li>
+                    <li class="list-group-item list-group-item-light">Price 2</li>
+                    <li class="list-group-item list-group-item-light">Price 3</li>
+                    <li class="list-group-item list-group-item-light">Price 4</li>
+                </ul>
+                </p>
+            </div> 
+        </div>
+{% endblock last_search %}
+
 {% block content %}
+
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
@@ -16,11 +34,11 @@
         {% if pred == 0 %}
 
             <h4> </h4>
-    
+
         {% else %}
             <h4> Price of the this house would be {{pred}} $</h4>
 
         {% endif %}
-        
-    </div>
-{% endblock content %}
+
+    </div> 
+{% endblock content %}       
