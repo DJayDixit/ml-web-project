@@ -1,0 +1,1 @@
+RECENT_SEARCHES = [0, 0, 0, 0]

@@ -18,6 +18,7 @@ class DetailForm(forms.Form):
     area_sqm = forms.IntegerField(label="Area")
     f_type = forms.CharField(label="Apartment Type", widget=forms.Select(choices=FLATS))
 
+
     
 
 

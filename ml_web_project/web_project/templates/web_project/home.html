@@ -7,10 +7,11 @@
                 <h3>Your previous looks into the future</h3>
                 <p class='text-muted'>Your recent search results will appear here.
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-light">Price 1</li>
-                    <li class="list-group-item list-group-item-light">Price 2</li>
-                    <li class="list-group-item list-group-item-light">Price 3</li>
-                    <li class="list-group-item list-group-item-light">Price 4</li>
+                    {% for search in last_searches %}
+                        {% if search != 0 %}
+                            <li class="list-group-item list-group-item-light">Price {{search}}</li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
                 </p>
             </div> 
