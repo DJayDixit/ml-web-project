@@ -3,6 +3,9 @@ from django.contrib import messages
 from .forms import DetailForm
 import ml_project.views as calculate_output
 from django.contrib.auth.decorators import login_required
+from ml_web_project.settings import SESSION_COOKIE_AGE
+from web_project.models import Calculations
+
 # posts = [
 #     {
 #         "author": "CoreyMs",
@@ -27,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def home(request):
 
-    context = {"pred": 0}
+    context = {"pred": 0, "session_time_out": SESSION_COOKIE_AGE}
 
     if request.method == 'POST':
         form = DetailForm(request.POST)
@@ -49,12 +52,20 @@ def home(request):
             year_gni_file = r"C:\Users\jaydi\Documents\GitHub\ml-web-project\ml_web_project\ml_project\year_gni_predict.pickle"
             price_file = r"C:\Users\jaydi\Documents\GitHub\ml-web-project\ml_web_project\ml_project\price_predict.pickle" 
 
-            price = calculate_output.HousePrice()
-            pred = price.calculate(f_date, flat_type, area, core_cpi_file, year_gni_file, price_file)
+            values = Calculations.objects.filter(year=year, month = month, area=area, flat_type =flat_type)
+ 
+            # TODO: querying the database to get the prediction if it exists in the database.
+            if len(values) != 0:
+                context['pred'] = values[0].prediction
 
-            context["pred"] = pred[0]
-            
-            
+            else:
+                price = calculate_output.HousePrice()
+                pred = price.calculate(f_date, flat_type, area, core_cpi_file, year_gni_file, price_file)
+
+                context["pred"] = pred[0]
+
+                calc = Calculations(year=year, month = month, area=area, flat_type =flat_type, prediction= pred)
+                calc.save()
 
     else:
         form = DetailForm()

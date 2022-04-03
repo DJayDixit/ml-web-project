@@ -12,8 +12,8 @@ FLATS= [
 
 class DetailForm(forms.Form):
 
-    year = forms.CharField(label="Year", max_length=4)
-    month = forms.CharField(label="Month", max_length=2)
+    year = forms.CharField(label="Year", max_length=4, min_length=4)
+    month = forms.CharField(label="Month", max_length=2, min_length=2)
 
     area_sqm = forms.IntegerField(label="Area")
     f_type = forms.CharField(label="Apartment Type", widget=forms.Select(choices=FLATS))
