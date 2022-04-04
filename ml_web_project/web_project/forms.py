@@ -1,3 +1,5 @@
+from cProfile import label
+import email
 from django import forms
 
 FLATS= [
@@ -17,6 +19,13 @@ class DetailForm(forms.Form):
 
     area_sqm = forms.IntegerField(label="Area")
     f_type = forms.CharField(label="Apartment Type", widget=forms.Select(choices=FLATS))
+
+class ContactForm(forms.Form):
+    first_name = forms.CharField(label="First Name", max_length=100)
+    last_name = forms.CharField(label="Last Name", max_length=100)
+    contact_email = forms.EmailField(label="email")
+
+
 
 
     

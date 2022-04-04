@@ -1,7 +1,7 @@
 from re import search
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import DetailForm
+from .forms import DetailForm, ContactForm
 import ml_project.views as calculate_output
 from django.contrib.auth.decorators import login_required
 from ml_web_project.settings import SESSION_COOKIE_AGE
@@ -81,6 +81,14 @@ def home(request):
 
 def about(request):
     return render(request, 'web_project/about.html')
+
+def contact(request):
+    c_form = ContactForm()
+    context = {"form": c_form}
+    if request.method == 'POST':
+        if c_form.is_valid():
+            messages.success(request, f'Data Submitted Succesfully')
+    return render(request, 'web_project/contact.html', context)
 
 
 # posts = [

@@ -1,0 +1,22 @@
+{% extends "web_project/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="content-section">
+        <form action="https://formsubmit.co/jaydixit613@gmail.com" method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Email the creator </legend>
+                {{ form|crispy }}
+                <input type="hidden" name="_autoresponse" value="your custom message">
+                <input type="hidden" name="_next" value="thankyou.html">
+            </fieldset>
+            <div class="form-group">
+                <button id="load" class="btn btn-outline-info" type="submit" onclick="clearResult()">
+                    <span id = "unsubmit">Submit</span>
+                </button>
+            </div>
+        </form>
+    </div> 
+{% endblock content %}       
