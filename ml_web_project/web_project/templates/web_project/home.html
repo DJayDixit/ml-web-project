@@ -42,6 +42,7 @@
                     function clearResult() {
                         document.getElementById("unsubmit").style.display = 'none';
                         document.getElementById("submit").style.display = 'contents'
+                        document.getElementById("load").classList.add("btn-disable");
                         document.getElementById("result").innerHTML = "";
                     }
                 </script>
@@ -54,6 +55,7 @@
         {% else %}
             <div id="result">
                 <h4 > Price of the this house would be {{pred}} $</h4>
+
             </div>
 
         {% endif %}

@@ -1,9 +1,10 @@
-from multiprocessing import context
-import re
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
 from .forms import UserRegisterForm, UserUpdateForm
+import web_project.cookies
+
 
 def register(request):
     if request.method == 'POST':
@@ -37,3 +38,7 @@ def updateProfile(request):
     context = {'u_form': u_form}
 
     return render(request, 'users/userupdate.html', context)
+
+def onLogout(request):
+    web_project.cookies.RECENT_SEARCHES = [0, 0, 0, 0, 0, 0, 0]
+    return render(request, 'users/logout.html')

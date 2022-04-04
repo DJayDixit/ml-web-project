@@ -6,12 +6,12 @@ import ml_project.views as calculate_output
 from django.contrib.auth.decorators import login_required
 from ml_web_project.settings import SESSION_COOKIE_AGE
 from web_project.models import Calculations
-from .cookies import RECENT_SEARCHES
+from . import cookies
 
 @login_required
 def home(request):
 
-    context = {"pred": 0, "session_time_out": SESSION_COOKIE_AGE, "last_searches": RECENT_SEARCHES}
+    context = {"pred": 0, "session_time_out": SESSION_COOKIE_AGE, "last_searches": cookies.RECENT_SEARCHES}
 
     if request.method == 'POST':
         form = DetailForm(request.POST)
