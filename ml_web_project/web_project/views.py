@@ -1,5 +1,5 @@
 from re import search
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import DetailForm
 import ml_project.views as calculate_output
@@ -29,6 +29,7 @@ def home(request):
 
             messages.success(request, f'Data Submitted Succesfully')
             
+            # TODO: setting relative path instead of absoulte
             core_cpi_file = r"C:\Users\jaydi\Documents\GitHub\ml-web-project\ml_web_project\ml_project\core_cpi_predict.pickle"
             year_gni_file = r"C:\Users\jaydi\Documents\GitHub\ml-web-project\ml_web_project\ml_project\year_gni_predict.pickle"
             price_file = r"C:\Users\jaydi\Documents\GitHub\ml-web-project\ml_web_project\ml_project\price_predict.pickle" 
@@ -39,28 +40,21 @@ def home(request):
             if len(values) != 0:
                 values[0].search_frequency += 1
                 values[0].save()
-                context['pred'] = values[0].prediction
+                context['pred'] = format(values[0].prediction, ".2f")
 
             else:
                 price = calculate_output.HousePrice()
                 pred = price.calculate(f_date, flat_type, area, core_cpi_file, year_gni_file, price_file)
 
-                context["pred"] = pred[0]
+                prediction = format(pred[0], ".2f")
+
+                context["pred"] = prediction
 
                 calc = Calculations(year=year, month = month, area=area, flat_type =flat_type, prediction= pred)
                 calc.save()
             
-            # when the search history is not full this will fill the search history first
             search_history_empty = False
 
-            # for index in range(len(context["last_searches"])):
-            #     searches = context["last_searches"]
-            #     search = searches[index]
-            #     if search == 0:
-            #         searches[index]= context["pred"]
-            #         search_history_empty = True
-            
-            # # this will push down the search history 
             if not search_history_empty:
                 curr_value: int
                 next_value: int

@@ -49,9 +49,10 @@
               <div class="col-md-8">
                 {% if messages %}
                   {% for message in messages %}
-                    <div class="alert alert-{{message.tags}} alert-dismissible">
-                      {{message}}
-                    </div>
+                      <div class="alert alert-{{message.tags}} alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{message}}
+                      </div>
                   {% endfor %}
                 {% endif %}
 

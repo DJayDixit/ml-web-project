@@ -4,12 +4,12 @@
 
     <div class="col-md-4">
         <div class="content-section">
-                <h3>Your previous looks into the future</h3>
+                <h3>Your previous glance into the future</h3>
                 <p class='text-muted'>Your recent search results will appear here.
                 <ul class="list-group">
                     {% for search in last_searches %}
                         {% if search != 0 %}
-                            <li class="list-group-item list-group-item-light">Price {{search}}</li>
+                            <li class="list-group-item list-group-item-light"><h6>{{search}}$</h6></li>
                         {% endif %}
                     {% endfor %}
                 </ul>
@@ -28,16 +28,33 @@
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Submit</button>
+                <button id="load" class="btn btn-outline-info" type="submit" onclick="clearResult()">
+                    <span id = "unsubmit">Submit</span>
+                    <span id = "submit"class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true">Loading...</span>
+                </button>
+
+                <style>
+                    #submit{
+                        display: none;
+                    }
+                </style>
+                <script>
+                    function clearResult() {
+                      document.getElementById("result").innerHTML = "";
+                      document.getElementById("unsubmit").style.display = 'none';
+                      document.getElementById("submit").style.display = 'contents'
+                    }
+                </script>
             </div>
         </form>
         
         {% if pred == 0 %}
-
-            <h4> </h4>
+            <h4></h4>
 
         {% else %}
-            <h4> Price of the this house would be {{pred}} $</h4>
+            <div id="result">
+                <h4 > Price of the this house would be {{pred}} $</h4>
+            </div>
 
         {% endif %}
 
