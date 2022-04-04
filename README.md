@@ -7,7 +7,7 @@
 2. You have atleast Django version 4.0.3
 3. You have Pandas and XG_Boost installed.
 4. Contact the creator if you want the models to run this project.
-5. In the terminal <cd ml-web-project/ml_web_project> and <Python manage.py runserver>
+5. In the terminal `cd ml-web-project/ml_web_project` and `Python manage.py runserver`
 
 ## Some Details about the project
 
